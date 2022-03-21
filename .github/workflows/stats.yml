@@ -17,6 +17,8 @@ jobs:
         with: # Grab a specific tag
           repo: grafana/loki
           tag: v2.4.2
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - run: |
           logcli -q --org-id=${ORG_ID} instant-query 'topk(10, sum(count_over_time({path=~"/tool/.*"}[2d])) by (path))'

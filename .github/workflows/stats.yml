@@ -11,11 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Install jq
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jq 
       
       - name: Install logcli
         run: |
@@ -30,7 +25,7 @@ jobs:
       - name: Run logcli
         run: |
           ./logcli-linux-amd64 -q --org-id=${ORG_ID} instant-query 'topk(25, sum(count_over_time({path=~"/tool/.*"}[2d])) by (path))' > data/api/stats_raw.json
-          cat data/api/stats_raw.json | jq [.[] | {(.metric.path | sub("/tool/"; "")): .value[1] }] | add > data/api/stats.json
+          cat data/api/stats_raw.json | jq [.[] | {(.metric.path | sub("^\/tool\/"; "")): .value[1] }] | add > data/api/stats.json
           rm -rf logcli.zip logcli-linux-amd64
         env:
           ORG_ID: ${{secrets.LOKI_ORG_ID}}

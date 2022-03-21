@@ -12,8 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: grafana/logcli:main-4f2f088-amd64
-        with:
-          args: -q --org-id=${ORG_ID} instant-query 'topk(10, sum(count_over_time({path=~"/tool/.*"}[2d])) by (path))'
+      - name: Install logcli
+        uses: jaxxstorm/action-install-gh-release@release/v1-alpha
+        with: # Grab a specific tag
+          repo: grafana/loki
+          tag: v2.4.2
+
+      - run: |
+          logcli -q --org-id=${ORG_ID} instant-query 'topk(10, sum(count_over_time({path=~"/tool/.*"}[2d])) by (path))'
         env:
           ORG_ID: ${{secrets.LOKI_ORG_ID}}

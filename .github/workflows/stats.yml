@@ -13,12 +13,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run logcli
-        run: |      
+        run: |
+          ls -althr
           rm -rf logcli.zip logcli-linux-amd64
           wget -nc -q -O "logcli.zip" "https://github.com/grafana/loki/releases/download/v2.4.2/logcli-linux-amd64.zip"
           unzip logcli.zip
           chmod a+x logcli-linux-amd64
-          ./logcli-linux-amd64 -q --org-id=${ORG_ID} instant-query 'topk(25, sum(count_over_time({path=~"/tool/.*"}[2d])) by (path))' > /data/api/stats.json
+          ./logcli-linux-amd64 -q --org-id=${ORG_ID} instant-query 'topk(25, sum(count_over_time({path=~"/tool/.*"}[2d])) by (path))' > data/api/stats.json
+          rm -rf logcli.zip logcli-linux-amd64
         env:
           ORG_ID: ${{secrets.LOKI_ORG_ID}}
           LOKI_ADDR: http://loki.jorgelbg.me

@@ -14,6 +14,7 @@ jobs:
 
       - name: Run logcli
         run: |      
+          rm -rf logcli.zip
           wget -nc -q -O "logcli.zip" "https://github.com/grafana/loki/releases/download/v2.4.2/logcli-linux-amd64.zip"
           unzip logcli.zip
           chmod a+x logcli-linux-amd64

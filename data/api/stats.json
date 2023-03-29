@@ -1,8 +1,1 @@
-{
-  "codefactor": "1",
-  "dialyxir": "1",
-  "elvis": "1",
-  "pdepend": "1",
-  "semgrep-supply-chain": "1",
-  "wsl": "1"
-}
+null

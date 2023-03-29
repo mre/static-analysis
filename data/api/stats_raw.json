@@ -1,8 +1,1 @@
-[
-  {"metric":{"path":"/tool/codefactor"},"value":[1680041783.921,"1"]},
-  {"metric":{"path":"/tool/dialyxir"},"value":[1680041783.921,"1"]},
-  {"metric":{"path":"/tool/elvis"},"value":[1680041783.921,"1"]},
-  {"metric":{"path":"/tool/pdepend"},"value":[1680041783.921,"1"]},
-  {"metric":{"path":"/tool/semgrep-supply-chain"},"value":[1680041783.921,"1"]},
-  {"metric":{"path":"/tool/wsl"},"value":[1680041783.921,"1"]}
-]
+[]
